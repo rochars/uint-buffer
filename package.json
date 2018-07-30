@@ -1,6 +1,6 @@
 {
   "name": "uint-buffer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Encode and decode unsigned integers to and from byte buffers.",
   "homepage": "https://github.com/rochars/uint-buffer",
   "author": "Rafael da Silva Rocha <rocha.rafaelsilva@gmail.com>",

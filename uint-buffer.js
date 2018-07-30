@@ -53,14 +53,14 @@ export default class UintBuffer {
     this.bytes = bits < 8 ? 1 : Math.ceil(bits / 8);
     /**
      * @type {number}
-     * @private
+     * @protected
      */
-    this.max_ = Math.pow(2, bits) - 1;
+    this.max = Math.pow(2, bits) - 1;
     /**
      * @type {number}
-     * @private
+     * @protected
      */
-    this.min_ = 0;
+    this.min = 0;
     /** @type {number} */
     let r = 8 - ((((bits - 1) | 7) + 1) - bits);
     /**
@@ -83,7 +83,7 @@ export default class UintBuffer {
     if (num !== num) {
       throw new Error('NaN');
     }
-    this.overflow_(num);
+    this.overflow(num);
     buffer[index] = (num < 0 ? num + Math.pow(2, this.bits) : num) & 255;
     index++;
     /** @type {number} */
@@ -109,19 +109,20 @@ export default class UintBuffer {
    */
   unpack(buffer, index=0) {
     /** @type {number} */
-    let num = this.read_(buffer, index);
-    this.overflow_(num);
+    let num = this.unpackUnsafe(buffer, index);
+    this.overflow(num);
     return num; 
   }
 
   /**
-   * Read one integer number from a byte buffer.
+   * Read one unsigned integer from a byte buffer.
+   * Does not check for overflows.
    * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
    * @param {number} index The index to read.
    * @return {number}
-   * @private
+   * @protected
    */
-  read_(buffer, index) {
+  unpackUnsafe(buffer, index) {
     /** @type {number} */
     let num = 0;
     for(let x = 0; x < this.bytes; x++) {
@@ -131,13 +132,13 @@ export default class UintBuffer {
   }
 
   /**
-   * Trows error in case of overflow.
+   * Throws error in case of overflow.
    * @param {number} num The number.
    * @throws {Error} on overflow.
-   * @private
+   * @protected
    */
-  overflow_(num) {
-    if (num > this.max_ || num < this.min_) {
+  overflow(num) {
+    if (num > this.max || num < this.min) {
       throw new Error('Overflow');
     }
   }

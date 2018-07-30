@@ -1,4 +1,4 @@
-// Type definitions for uint-buffer 0.0.1
+// Type definitions for uint-buffer 0.1
 // Project: https://github.com/rochars/uint-buffer
 // Definitions by: Rafael da Silva Rocha <https://github.com/rochars>
 // Definitions: https://github.com/rochars/uint-buffer
@@ -22,6 +22,16 @@ declare class UintBuffer {
    * @type {number}
    */
   bytes: number;
+  /**
+   * @type {number}
+   * @protected
+   */
+  max: number;
+  /**
+   * @type {number}
+   * @protected
+   */
+  min: number;
 
   /**
    * Write one unsigned integer to a byte buffer.
@@ -42,4 +52,21 @@ declare class UintBuffer {
    * @throws {Error} On overflow.
    */
   unpack(buffer: Uint8Array|number[], index?: number): number;
+
+  /**
+   * Read one integer number from a byte buffer.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+   * @param {number} index The index to read.
+   * @return {number}
+   * @protected
+   */
+  unpackUnsafe(buffer: Uint8Array|Array<number>, index: number): number;
+
+  /**
+   * Throws error in case of overflow.
+   * @param {number} num The number.
+   * @throws {Error} on overflow.
+   * @protected
+   */
+  overflow(num: number): void;
 }

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Externs for uint-buffer 0.0.1
+ * @fileoverview Externs for uint-buffer 0.1
  * @see https://github.com/rochars/uint-buffer
  * @externs
  */
@@ -41,3 +41,20 @@ UintBuffer.prototype.pack = function(buffer, num, index=0) {};
  * @throws {Error} On overflow.
  */
 UintBuffer.prototype.unpack = function(buffer, index=0) {};
+
+/**
+ * Read one integer number from a byte buffer.
+ * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+ * @param {number} index The index to read.
+ * @return {number}
+ * @protected
+ */
+UintBuffer.prototype.unpackUnsafe = function(buffer, index) {};
+
+/**
+ * Throws error in case of overflow.
+ * @param {number} num The number.
+ * @throws {Error} on overflow.
+ * @protected
+ */
+UintBuffer.prototype.overflow = function(num) {};
