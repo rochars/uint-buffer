@@ -10,7 +10,6 @@ https://github.com/rochars/uint-buffer
 - **MIT licensed**
 - **Use it out of the box in the browser**
 - **Use it out of the box in Node.js**
-- **Can be used with arrays and typed arrays**
 - **Compatible with IE8+**
 - **Include TypeScript declaration file**
 - **Tested against Python's struct module**

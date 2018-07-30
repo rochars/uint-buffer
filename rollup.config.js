@@ -15,7 +15,7 @@ const externsFile = fs.readFileSync('./externs/uint-buffer.js', 'utf8');
 
 // Legal
 const license = '/**\n'+
-' * @see https://github.com/rochars/uint-buffer.\n' +
+' * @see https://github.com/rochars/uint-buffer\n' +
 ' */\n';
 
 // GCC UMD footer, compatible with old browsers, Node and AMD loaders
