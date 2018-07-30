@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>uint-buffer.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-UintBuffer.html">UintBuffer</a><ul class='methods'><li data-type='method'><a href="module-UintBuffer.html#pack">pack</a></li><li data-type='method'><a href="module-UintBuffer.html#unpack">unpack</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">uint-buffer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+ * Copyright (c) 2018 Rafael da Silva Rocha.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
+/**
+ * @fileoverview Pack and unpack unsigned ints.
+ * @see https://github.com/rochars/uint-buffer
+ */
+
+/**
+ * @module UintBuffer
+ * @ignore
+ */
+
+/**
+ * A class to write and read unsigned ints to and from byte buffers.
+ */
+export default class UintBuffer {
+  
+  /**
+   * @param {number} bits The number of bits used by the integer.
+   */
+  constructor(bits) {
+    /**
+     * The number of bits used by one number.
+     * @type {number}
+     */
+    this.bits = bits;
+    /**
+     * The number of bytes used by one number.
+     * @type {number}
+     */
+    this.bytes = bits &lt; 8 ? 1 : Math.ceil(bits / 8);
+    /**
+     * @type {number}
+     * @private
+     */
+    this.max_ = Math.pow(2, bits) - 1;
+    /**
+     * @type {number}
+     * @private
+     */
+    this.min_ = 0;
+    /** @type {number} */
+    let r = 8 - ((((bits - 1) | 7) + 1) - bits);
+    /**
+     * @type {number}
+     * @private
+     */
+    this.lastByteMask_ = Math.pow(2, r > 0 ? r : 8) - 1;
+  }
+
+  /**
+   * Write one unsigned integer to a byte buffer.
+   * @param {!Uint8Array|!Array&lt;number>} buffer An array of bytes.
+   * @param {number} num The number.
+   * @param {number=} index The index being written in the byte buffer.
+   * @return {number} The next index to write on the byte buffer.
+   * @throws {Error} If num is NaN.
+   * @throws {Error} On overflow.
+   */
+  pack(buffer, num, index=0) {
+    if (num !== num) {
+      throw new Error('NaN');
+    }
+    this.overflow_(num);
+    buffer[index] = (num &lt; 0 ? num + Math.pow(2, this.bits) : num) &amp; 255;
+    index++;
+    /** @type {number} */
+    let len = this.bytes;
+    for (let i = 2; i &lt; len; i++) {
+      buffer[index] = Math.floor(num / Math.pow(2, ((i - 1) * 8))) &amp; 255;
+      index++;
+    }
+    if (this.bits > 8) {
+      buffer[index] = Math.floor(
+          num / Math.pow(2, ((this.bytes - 1) * 8))) &amp; this.lastByteMask_;
+      index++;
+    }
+    return index;
+  }
+  
+  /**
+   * Read one unsigned integer from a byte buffer.
+   * @param {!Uint8Array|!Array&lt;number>} buffer An array of bytes.
+   * @param {number=} index The index to read.
+   * @return {number} The number.
+   * @throws {Error} On overflow.
+   */
+  unpack(buffer, index=0) {
+    /** @type {number} */
+    let num = this.read_(buffer, index);
+    this.overflow_(num);
+    return num; 
+  }
+
+  /**
+   * Read one integer number from a byte buffer.
+   * @param {!Uint8Array|!Array&lt;number>} buffer An array of bytes.
+   * @param {number} index The index to read.
+   * @return {number}
+   * @private
+   */
+  read_(buffer, index) {
+    /** @type {number} */
+    let num = 0;
+    for(let x = 0; x &lt; this.bytes; x++) {
+      num += buffer[index + x] * Math.pow(256, x);
+    }
+    return num;
+  }
+
+  /**
+   * Trows error in case of overflow.
+   * @param {number} num The number.
+   * @throws {Error} on overflow.
+   * @private
+   */
+  overflow_(num) {
+    if (num > this.max_ || num &lt; this.min_) {
+      throw new Error('Overflow');
+    }
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 30 2018 02:11:39 GMT-0300 (Hora oficial do Brasil) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
