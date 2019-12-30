@@ -5,7 +5,7 @@
   "homepage": "https://github.com/rochars/uint-buffer",
   "author": "Rafael da Silva Rocha <rocha.rafaelsilva@gmail.com>",
   "license": "MIT",
-  "main": "./dist/uint-buffer.umd.js",
+  "main": "./dist/uint-buffer.js",
   "module": "./index.js",
   "types": "./index.d.ts",
   "engines": {
