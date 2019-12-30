@@ -5,6 +5,8 @@
 ```javascript
 const UintBuffer = require('uint-buffer').UintBuffer;
 ```
+- Add packUnsafe() and unpackUnsafe() to the API
+- Use TypeError for NaN and RangeError for overflows instead of Error
 - New package structure:
 	* dist file is "./dist/uint-buffer.js", a UMD served as "main"
 	* ES6 source is "./index.js", served as "module"

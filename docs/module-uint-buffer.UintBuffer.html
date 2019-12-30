@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-uint-buffer.UintBuffer.html">UintBuffer</a><ul class='methods'><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#overflow">overflow</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#pack">pack</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#unpack">unpack</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#unpackUnsafe">unpackUnsafe</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-uint-buffer.html">uint-buffer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-uint-buffer.UintBuffer.html">UintBuffer</a><ul class='methods'><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#pack">pack</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#packUnsafe">packUnsafe</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#unpack">unpack</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#unpackUnsafe">unpackUnsafe</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-uint-buffer.html">uint-buffer</a></li></ul>
 </nav>
 
 <div id="main">
@@ -506,171 +506,6 @@
 
     
 
-    <h4 class="name" id="overflow"><span class="type-signature">(protected) </span>overflow<span class="signature">(num)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line137">line 137</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    Throws range error in case of overflow.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>num</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The number.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        On overflow.
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl class="param-type">
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">RangeError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
     <h4 class="name" id="pack"><span class="type-signature"></span>pack<span class="signature">(buffer, num, index<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
@@ -978,6 +813,257 @@
 
     
 
+    <h4 class="name" id="packUnsafe"><span class="type-signature"></span>packUnsafe<span class="signature">(buffer, num, index<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line96">line 96</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Write one unsigned integer to a byte buffer.This method assumes the input has already been validatedand should be used only if you know what you are doing.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>buffer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Uint8Array</span>
+|
+
+<span class="param-type">!Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">An array of bytes.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>num</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The number.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
+
+            <td class="description last">The index being written in the byte buffer.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The next index to write on the byte buffer.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="unpack"><span class="type-signature"></span>unpack<span class="signature">(buffer, index<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
@@ -1223,7 +1309,7 @@
 
     
 
-    <h4 class="name" id="unpackUnsafe"><span class="type-signature">(protected) </span>unpackUnsafe<span class="signature">(buffer, index)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="unpackUnsafe"><span class="type-signature"></span>unpackUnsafe<span class="signature">(buffer, index<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
@@ -1235,7 +1321,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line122">line 122</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -1301,7 +1387,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1329,7 +1419,19 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">An array of bytes.</td>
@@ -1352,7 +1454,23 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
             
 
             <td class="description last">The index to read.</td>

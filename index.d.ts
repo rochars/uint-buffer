@@ -56,13 +56,23 @@ declare module UintBuffer {
     unpack(buffer: Uint8Array|number[], index?: number): number;
 
     /**
+     * Write one unsigned integer to a byte buffer.
+     * This method assumes the input has already been validated
+     * and should be used only if you know what you are doing.
+     * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+     * @param {number} num The number.
+     * @param {number=} index The index being written in the byte buffer.
+     * @return {number} The next index to write on the byte buffer.
+     */
+    packUnsafe(buffer: Uint8Array|number[], index?: number): number;
+
+    /**
      * Read one integer number from a byte buffer.
      * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
-     * @param {number} index The index to read.
+     * @param {number=} index The index to read.
      * @return {number}
-     * @protected
      */
-    unpackUnsafe(buffer: Uint8Array|Array<number>, index: number): number;
+    unpackUnsafe(buffer: Uint8Array|Array<number>, index?: number): number;
 
     /**
      * Throws error in case of overflow.

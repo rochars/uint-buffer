@@ -105,6 +105,33 @@ export class UintBuffer {
    * @throws {RangeError} On overflow.
    */
   unpack(buffer, index=0) {}
+
+  /**
+   * Write one unsigned integer to a byte buffer.
+   * This method assumes the input has already been validated
+   * and should be used only if you know what you are doing.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+   * @param {number} num The number.
+   * @param {number=} index The index being written in the byte buffer.
+   * @return {number} The next index to write on the byte buffer.
+   */
+  packUnsafe(buffer, num, index=0) {}
+
+  /**
+   * Read one unsigned integer from a byte buffer.
+   * Does not check for overflows.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+   * @param {number=} index The index to read.
+   * @return {number}
+   */
+  unpackUnsafe(buffer, index=0) {
+    /** @type {number} */
+    let num = 0;
+    for(let x = 0; x < this.bytes; x++) {
+      num += buffer[index + x] * Math.pow(256, x);
+    }
+    return num;
+  }
 }
 ```
 

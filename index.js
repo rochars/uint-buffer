@@ -81,20 +81,20 @@ export class UintBuffer {
       throw new TypeError();
     }
     this.overflow(num);
-    buffer[index] = (num < 0 ? num + Math.pow(2, this.bits) : num) & 255;
-    index++;
-    /** @type {number} */
-    let len = this.bytes;
-    for (let i = 2; i < len; i++) {
-      buffer[index] = Math.floor(num / Math.pow(2, ((i - 1) * 8))) & 255;
-      index++;
-    }
-    if (this.bits > 8) {
-      buffer[index] = Math.floor(
-          num / Math.pow(2, ((this.bytes - 1) * 8))) & this.lastByteMask_;
-      index++;
-    }
-    return index;
+    return this.pack_(buffer, num, index);
+  }
+
+  /**
+   * Write one unsigned integer to a byte buffer.
+   * This method assumes the input has already been validated
+   * and should be used only if you know what you are doing.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+   * @param {number} num The number.
+   * @param {number=} index The index being written in the byte buffer.
+   * @return {number} The next index to write on the byte buffer.
+   */
+  packUnsafe(buffer, num, index=0) {
+    return this.pack_(buffer, num, index);
   }
   
   /**
@@ -115,11 +115,10 @@ export class UintBuffer {
    * Read one unsigned integer from a byte buffer.
    * Does not check for overflows.
    * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
-   * @param {number} index The index to read.
+   * @param {number=} index The index to read.
    * @return {number}
-   * @protected
    */
-  unpackUnsafe(buffer, index) {
+  unpackUnsafe(buffer, index=0) {
     /** @type {number} */
     let num = 0;
     for(let x = 0; x < this.bytes; x++) {
@@ -133,10 +132,38 @@ export class UintBuffer {
    * @param {number} num The number.
    * @throws {RangeError} On overflow.
    * @protected
+   * @ignore
    */
   overflow(num) {
     if (num > this.max || num < this.min) {
       throw new RangeError();
     }
+  }
+
+  /**
+   * Write one unsigned integer to a byte buffer.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+   * @param {number} num The number.
+   * @param {number=} index The index being written in the byte buffer.
+   * @return {number} The next index to write on the byte buffer.
+   * @throws {TypeError} If num is not a number.
+   * @throws {RangeError} On overflow.
+   * @private
+   */
+  pack_(buffer, num, index=0) {
+    buffer[index] = (num < 0 ? num + Math.pow(2, this.bits) : num) & 255;
+    index++;
+    /** @type {number} */
+    let len = this.bytes;
+    for (let i = 2; i < len; i++) {
+      buffer[index] = Math.floor(num / Math.pow(2, ((i - 1) * 8))) & 255;
+      index++;
+    }
+    if (this.bits > 8) {
+      buffer[index] = Math.floor(
+          num / Math.pow(2, ((this.bytes - 1) * 8))) & this.lastByteMask_;
+      index++;
+    }
+    return index;
   }
 }

@@ -66,13 +66,23 @@ UintBuffer.prototype.pack = function(buffer, num, index=0) {};
 UintBuffer.prototype.unpack = function(buffer, index=0) {};
 
 /**
+ * Write one unsigned integer to a byte buffer.
+ * This method assumes the input has already been validated
+ * and should be used only if you know what you are doing.
+ * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
+ * @param {number} num The number.
+ * @param {number=} index The index being written in the byte buffer.
+ * @return {number} The next index to write on the byte buffer.
+ */
+UintBuffer.prototype.packUnsafe = function(buffer, num, index=0) {};
+
+/**
  * Read one integer number from a byte buffer.
  * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
- * @param {number} index The index to read.
+ * @param {number=} index The index to read.
  * @return {number}
- * @protected
  */
-UintBuffer.prototype.unpackUnsafe = function(buffer, index) {};
+UintBuffer.prototype.unpackUnsafe = function(buffer, index=0) {};
 
 /**
  * Throws error in case of overflow.

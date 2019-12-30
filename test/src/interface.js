@@ -26,12 +26,22 @@ describe('16-bit integers, unsigned', function() {
     assert.equal(typeof tcb.unpack, 'function');
   });
   // Error on strings
-  it('throw error when packing a string', function() {
+  it('throw error when packing a string with pack()', function() {
     assert.throws(function(){
       var buffer = [];
       tcb.pack(buffer, '400'); // ommit the index, ==0
-      console.log(buffer);
     }, TypeError);
+  });
+  // Unsafe should not complain about strings
+  it('throw no error when packing a string with packUnsafe()', function() {
+    var buffer = [];
+    tcb.packUnsafe(buffer, 'xxx'); // A string that is not a number
+    assert.deepEqual(buffer, [0, 0])
+  });
+  it('throw no error when packing a number string with packUnsafe()', function() {
+    var buffer = [];
+    tcb.packUnsafe(buffer, '255'); // A string that represents a number
+    assert.deepEqual(buffer, [255, 0])
   });
 });
 
