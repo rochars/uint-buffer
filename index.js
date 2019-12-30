@@ -77,7 +77,7 @@ export class UintBuffer {
    * @throws {RangeError} On overflow.
    */
   pack(buffer, num, index=0) {
-    if (num !== num) {
+    if (num !== num || typeof num != 'number') {
       throw new TypeError();
     }
     this.overflow(num);

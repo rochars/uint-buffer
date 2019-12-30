@@ -25,4 +25,13 @@ describe('16-bit integers, unsigned', function() {
   it('have the unpack method', function() {
     assert.equal(typeof tcb.unpack, 'function');
   });
+  // Error on strings
+  it('throw error when packing a string', function() {
+    assert.throws(function(){
+      var buffer = [];
+      tcb.pack(buffer, '400'); // ommit the index, ==0
+      console.log(buffer);
+    }, TypeError);
+  });
 });
+
