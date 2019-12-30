@@ -73,12 +73,12 @@ export class UintBuffer {
    * @param {number} num The number.
    * @param {number=} index The index being written in the byte buffer.
    * @return {number} The next index to write on the byte buffer.
-   * @throws {Error} If num is NaN.
-   * @throws {Error} On overflow.
+   * @throws {TypeError} If num is not a number.
+   * @throws {RangeError} On overflow.
    */
   pack(buffer, num, index=0) {
     if (num !== num) {
-      throw new Error('NaN');
+      throw new TypeError();
     }
     this.overflow(num);
     buffer[index] = (num < 0 ? num + Math.pow(2, this.bits) : num) & 255;
@@ -102,7 +102,7 @@ export class UintBuffer {
    * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
    * @param {number=} index The index to read.
    * @return {number} The number.
-   * @throws {Error} On overflow.
+   * @throws {RangeError} On overflow.
    */
   unpack(buffer, index=0) {
     /** @type {number} */
@@ -131,12 +131,12 @@ export class UintBuffer {
   /**
    * Throws range error in case of overflow.
    * @param {number} num The number.
-   * @throws {Error} on overflow.
+   * @throws {RangeError} On overflow.
    * @protected
    */
   overflow(num) {
     if (num > this.max || num < this.min) {
-      throw new Error('Overflow');
+      throw new RangeError();
     }
   }
 }

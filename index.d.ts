@@ -41,8 +41,8 @@ declare module UintBuffer {
      * @param {number} num The number.
      * @param {number=} index The index being written in the byte buffer.
      * @return {number} The next index to write on the byte buffer.
-     * @throws {Error} If num is NaN.
-     * @throws {Error} On overflow.
+     * @throws {TypeError} If num is not a number.
+     * @throws {RangeError} On overflow.
      */
     pack(buffer: Uint8Array|number[], num: number, index?: number): number;
 
@@ -51,7 +51,7 @@ declare module UintBuffer {
      * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
      * @param {number=} index The index to read.
      * @return {number} The number.
-     * @throws {Error} On overflow.
+     * @throws {RangeError} On overflow.
      */
     unpack(buffer: Uint8Array|number[], index?: number): number;
 
@@ -67,7 +67,7 @@ declare module UintBuffer {
     /**
      * Throws error in case of overflow.
      * @param {number} num The number.
-     * @throws {Error} On overflow.
+     * @throws {RangeError} On overflow.
      * @protected
      */
     overflow(num: number): void;

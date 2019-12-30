@@ -51,8 +51,8 @@ UintBuffer.prototype.bytes = 0;
  * @param {number} num The number.
  * @param {number=} index The index being written in the byte buffer.
  * @return {number} The next index to write on the byte buffer.
- * @throws {Error} If num is NaN.
- * @throws {Error} On overflow.
+ * @throws {TypeError} If num is not a number.
+ * @throws {RangeError} On overflow.
  */
 UintBuffer.prototype.pack = function(buffer, num, index=0) {};
 
@@ -61,7 +61,7 @@ UintBuffer.prototype.pack = function(buffer, num, index=0) {};
  * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
  * @param {number=} index The index to read.
  * @return {number} The number.
- * @throws {Error} On overflow.
+ * @throws {RangeError} On overflow.
  */
 UintBuffer.prototype.unpack = function(buffer, index=0) {};
 
@@ -77,7 +77,7 @@ UintBuffer.prototype.unpackUnsafe = function(buffer, index) {};
 /**
  * Throws error in case of overflow.
  * @param {number} num The number.
- * @throws {Error} On overflow.
+ * @throws {RangeError} On overflow.
  * @protected
  */
 UintBuffer.prototype.overflow = function(num) {};
