@@ -1,44 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>uint-buffer.js - Documentation</title>
-
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-</head>
-<body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-UintBuffer.html">UintBuffer</a><ul class='methods'><li data-type='method'><a href="module-UintBuffer.html#overflow">overflow</a></li><li data-type='method'><a href="module-UintBuffer.html#pack">pack</a></li><li data-type='method'><a href="module-UintBuffer.html#unpack">unpack</a></li><li data-type='method'><a href="module-UintBuffer.html#unpackUnsafe">unpackUnsafe</a></li></ul></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">uint-buffer.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/*
- * Copyright (c) 2018 Rafael da Silva Rocha.
+/*
+ * Copyright (c) 2018-2019 Rafael da Silva Rocha.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -62,19 +23,16 @@
  */
 
 /**
- * @fileoverview Pack and unpack unsigned ints.
+ * @fileoverview Encode and decode unsigned integers to and from byte buffers.
  * @see https://github.com/rochars/uint-buffer
  */
 
-/**
- * @module UintBuffer
- * @ignore
- */
+/** @module uint-buffer */
 
 /**
  * A class to write and read unsigned ints to and from byte buffers.
  */
-export default class UintBuffer {
+export class UintBuffer {
   
   /**
    * @param {number} bits The number of bits used by the integer.
@@ -89,7 +47,7 @@ export default class UintBuffer {
      * The number of bytes used by one number.
      * @type {number}
      */
-    this.bytes = bits &lt; 8 ? 1 : Math.ceil(bits / 8);
+    this.bytes = bits < 8 ? 1 : Math.ceil(bits / 8);
     /**
      * @type {number}
      * @protected
@@ -111,7 +69,7 @@ export default class UintBuffer {
 
   /**
    * Write one unsigned integer to a byte buffer.
-   * @param {!Uint8Array|!Array&lt;number>} buffer An array of bytes.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
    * @param {number} num The number.
    * @param {number=} index The index being written in the byte buffer.
    * @return {number} The next index to write on the byte buffer.
@@ -123,17 +81,17 @@ export default class UintBuffer {
       throw new Error('NaN');
     }
     this.overflow(num);
-    buffer[index] = (num &lt; 0 ? num + Math.pow(2, this.bits) : num) &amp; 255;
+    buffer[index] = (num < 0 ? num + Math.pow(2, this.bits) : num) & 255;
     index++;
     /** @type {number} */
     let len = this.bytes;
-    for (let i = 2; i &lt; len; i++) {
-      buffer[index] = Math.floor(num / Math.pow(2, ((i - 1) * 8))) &amp; 255;
+    for (let i = 2; i < len; i++) {
+      buffer[index] = Math.floor(num / Math.pow(2, ((i - 1) * 8))) & 255;
       index++;
     }
     if (this.bits > 8) {
       buffer[index] = Math.floor(
-          num / Math.pow(2, ((this.bytes - 1) * 8))) &amp; this.lastByteMask_;
+          num / Math.pow(2, ((this.bytes - 1) * 8))) & this.lastByteMask_;
       index++;
     }
     return index;
@@ -141,7 +99,7 @@ export default class UintBuffer {
   
   /**
    * Read one unsigned integer from a byte buffer.
-   * @param {!Uint8Array|!Array&lt;number>} buffer An array of bytes.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
    * @param {number=} index The index to read.
    * @return {number} The number.
    * @throws {Error} On overflow.
@@ -156,7 +114,7 @@ export default class UintBuffer {
   /**
    * Read one unsigned integer from a byte buffer.
    * Does not check for overflows.
-   * @param {!Uint8Array|!Array&lt;number>} buffer An array of bytes.
+   * @param {!Uint8Array|!Array<number>} buffer An array of bytes.
    * @param {number} index The index to read.
    * @return {number}
    * @protected
@@ -164,40 +122,21 @@ export default class UintBuffer {
   unpackUnsafe(buffer, index) {
     /** @type {number} */
     let num = 0;
-    for(let x = 0; x &lt; this.bytes; x++) {
+    for(let x = 0; x < this.bytes; x++) {
       num += buffer[index + x] * Math.pow(256, x);
     }
     return num;
   }
 
   /**
-   * Throws error in case of overflow.
+   * Throws range error in case of overflow.
    * @param {number} num The number.
    * @throws {Error} on overflow.
    * @protected
    */
   overflow(num) {
-    if (num > this.max || num &lt; this.min) {
+    if (num > this.max || num < this.min) {
       throw new Error('Overflow');
     }
   }
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 30 2018 03:01:42 GMT-0300 (Hora oficial do Brasil) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
-</body>
-</html>

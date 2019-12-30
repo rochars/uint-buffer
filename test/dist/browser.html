@@ -11,26 +11,27 @@
 
 	<div class="container">
 		<h1><a href="https://github.com/rochars/uint-buffer">uint-buffer</a></h1>
-		<p>ES6 module to encode and decode UTF-8 strings.<br>
-			Copyright (c) 2018 Rafael da Silva Rocha.<br>
+		<p>Encode and decode unsigned integers to and from byte buffers.<br>
+			Copyright (c) 2018-2019 Rafael da Silva Rocha.<br>
 			<a href="https://github.com/rochars/uint-buffer">https://github.com/rochars/uint-buffer</a></p>
 	</div>
 
-	<!-- Load Mocha -->
+	<!-- Load UMD -->
+	<script src="../../dist/uint-buffer.js"></script>
+
+	<!-- Load Chai and Mocha -->
 	<div class="container">
 		<div id="mocha"></div>
 	</div>
-
-	<!-- Load shims -->
-	<script src="shims.js"></script>
-
-	<!-- Load Mocha and assertions -->
-	<script src="assert.js"></script>
+	<script src="https://www.chaijs.com/chai.js"></script>
 	<script src="https://unpkg.com/mocha@4.0.1/mocha.js"></script>
-	<script>mocha.setup('bdd')</script>
+	<script>
+		var assert = chai.assert;
+		var UintBuffer = UintBuffer.UintBuffer;
+		mocha.setup('bdd')
+	</script>
 
-	<!-- Load UMD -->
-	<script src="../../uint-buffer.umd.js"></script>
+	
 
 	<!-- Load the tests -->
 	<script src="../src/uint8.js"></script>

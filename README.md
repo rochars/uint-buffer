@@ -1,5 +1,5 @@
 # uint-buffer
-Copyright (c) 2018 Rafael da Silva Rocha.  
+Copyright (c) 2018-2019 Rafael da Silva Rocha.  
 https://github.com/rochars/uint-buffer
 
 [![NPM version](https://img.shields.io/npm/v/uint-buffer.svg?style=for-the-badge)](https://www.npmjs.com/package/uint-buffer) [![Docs](https://img.shields.io/badge/docs-online-blue.svg?style=for-the-badge)](https://rochars.github.io/uint-buffer/docs/index.html) [![Tests](https://img.shields.io/badge/tests-online-blue.svg?style=for-the-badge)](https://rochars.github.io/uint-buffer/test/dist/browser.html)  
@@ -8,12 +8,7 @@ https://github.com/rochars/uint-buffer
 **uint-buffer** is a module to encode and decode unsigned integers to and from byte buffers.
 
 - **MIT licensed**
-- **Use it out of the box in the browser**
-- **Use it out of the box in Node.js**
-- **Compatible with IE8+**
-- **Include TypeScript declaration file**
-- **Tested against Python's struct module**
-- **Less than 1kb minified**
+- **Can be used where typed arrays can't**
 
 ## Install
 ```
@@ -22,10 +17,38 @@ npm install uint-buffer
 
 ## Use
 
-### Node
-If you installed via [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com), **import UintBuffer from uint-buffer**:
+### Browser
+Use the **uint-buffer.js** file in the **dist** folder:
+```html
+<script src="uint-buffer.js"></script>
+<script>
+  // A byte buffer, array and Uint8Array can be used
+  var buffer = [];
+
+  // Create a UintBuffer to handle 16-bit numbers
+  var uintBufer = new UintBuffer.UintBuffer(16);
+
+  // Pack a value
+  uintBufer.pack(buffer, 767);
+
+  // Check the buffer
+  console.log(buffer);
+</script>
+```
+
+Or load it from the [jsDelivr](https://cdn.jsdelivr.net/npm/uint-buffer) CDN:
+```html
+<script src="https://cdn.jsdelivr.net/npm/uint-buffer"></script>
+```
+
+Or load it from [unpkg](https://unpkg.com/uint-buffer):
+```html
+<script src="https://unpkg.com/uint-buffer"></script>
+```
+
+### Node.js
 ```javascript
-import UintBuffer from 'uint-buffer';
+const UintBuffer = require('uint-buffer').UintBuffer;
 
 // A byte buffer, array and Uint8Array can be used
 let buffer = [];
@@ -40,46 +63,12 @@ uintBufer.pack(buffer, 2045);
 console.log(buffer);
 ```
 
-Or **require**:
-```javascript
-const UintBuffer = require('uint-buffer');
-```
-
-### Browser
-Use **uint-buffer.umd.js**:
-```html
-<script src="uint-buffer.umd.js"></script>
-<script>
-	// A byte buffer, array and Uint8Array can be used
-	var buffer = [];
-
-	// Create a UintBuffer to handle 16-bit numbers
-	var uintBufer = new UintBuffer(16);
-
-	// Pack a value
-	uintBufer.pack(buffer, 767);
-
-	// Check the buffer
-	console.log(buffer);
-</script>
-```
-
-Or load it from the [jsDelivr](https://cdn.jsdelivr.net/npm/uint-buffer) CDN:
-```html
-<script src="https://cdn.jsdelivr.net/npm/uint-buffer"></script>
-```
-
-Or load it from [unpkg](https://unpkg.com/uint-buffer):
-```html
-<script src="https://unpkg.com/uint-buffer"></script>
-```
-
 ## API
 ```javascript
 /**
  * A class to write and read unsigned ints to and from byte buffers.
  */
-class UintBuffer {
+export class UintBuffer {
   
   /**
    * @param {number} bits The number of bits used by the integer.
@@ -132,7 +121,7 @@ https://google.github.io/styleguide/jsguide.html
 This project is bound by a code of conduct: The [Contributor Covenant, version 1.4](https://github.com/rochars/uint-buffer/blob/master/CODE_OF_CONDUCT.md), also available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
 ## LICENSE
-Copyright (c) 2018 Rafael da Silva Rocha.  
+Copyright (c) 2018-2019 Rafael da Silva Rocha.  
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

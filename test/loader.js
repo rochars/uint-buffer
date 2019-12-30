@@ -1,22 +1,22 @@
 /**
- * Copyright (c) 2018 Rafael da Silva Rocha.
+ * Copyright (c) 2018-2019 Rafael da Silva Rocha.
  * https://github.com/rochars/uint-buffer
  *
  */
 
 let UintBuffer;
 
-// UMD bundle
+// Load the class from the UMD bundle
 if (process.argv[3] == '--umd') {
 	console.log('umd tests');
-	UintBuffer = require('../uint-buffer.umd.js');
+	UintBuffer = require('../dist/uint-buffer.js').UintBuffer;
 
-// Source
+// Load the class from the source file
 } else {
+	console.log('source tests');
 	require = require("esm")(module);
 	global.module = module;
-	console.log('Source tests');
-	UintBuffer = require('../uint-buffer.js').default;
+	UintBuffer = require('../index.js').UintBuffer;
 }
 
 module.exports = UintBuffer;

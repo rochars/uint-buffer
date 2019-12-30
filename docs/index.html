@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
     <title>Home - Documentation</title>
-
+    
+    
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
@@ -11,6 +13,8 @@
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="styles/prettify.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -21,8 +25,9 @@
 
 <label for="nav-trigger" class="overlay"></label>
 
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-UintBuffer.html">UintBuffer</a><ul class='methods'><li data-type='method'><a href="module-UintBuffer.html#overflow">overflow</a></li><li data-type='method'><a href="module-UintBuffer.html#pack">pack</a></li><li data-type='method'><a href="module-UintBuffer.html#unpack">unpack</a></li><li data-type='method'><a href="module-UintBuffer.html#unpackUnsafe">unpackUnsafe</a></li></ul></li></ul>
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-uint-buffer.UintBuffer.html">UintBuffer</a><ul class='methods'><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#overflow">overflow</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#pack">pack</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#unpack">unpack</a></li><li data-type='method'><a href="module-uint-buffer.UintBuffer.html#unpackUnsafe">unpackUnsafe</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-uint-buffer.html">uint-buffer</a></li></ul>
 </nav>
 
 <div id="main">
@@ -35,6 +40,11 @@
     
 
 
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
 
 
 
@@ -45,21 +55,48 @@
     
 
 
+
     <section class="readme">
-        <article><h1>uint-buffer</h1><p>Copyright (c) 2018 Rafael da Silva Rocha.<br>https://github.com/rochars/uint-buffer</p>
-<p><a href="https://www.npmjs.com/package/uint-buffer"><img src="https://img.shields.io/npm/v/uint-buffer.svg?style=for-the-badge" alt="NPM version"></a> <a href="https://rochars.github.io/uint-buffer/docs/index.html"><img src="https://img.shields.io/badge/docs-online-blue.svg?style=for-the-badge" alt="Docs"></a> <a href="https://rochars.github.io/uint-buffer/test/dist/browser.html"><img src="https://img.shields.io/badge/tests-online-blue.svg?style=for-the-badge" alt="Tests"></a><br><a href="https://codecov.io/gh/rochars/uint-buffer"><img src="https://img.shields.io/codecov/c/github/rochars/uint-buffer.svg?style=flat-square" alt="Codecov"></a> <a href="https://travis-ci.org/rochars/uint-buffer"><img src="https://img.shields.io/travis/rochars/uint-buffer.svg?style=flat-square" alt="Unix Build"></a> <a href="https://ci.appveyor.com/project/rochars/uint-buffer"><img src="https://img.shields.io/appveyor/ci/rochars/uint-buffer.svg?style=flat-square&amp;logo=appveyor" alt="Windows Build"></a> <a href="https://scrutinizer-ci.com/g/rochars/uint-buffer/"><img src="https://img.shields.io/scrutinizer/g/rochars/uint-buffer.svg?style=flat-square&amp;logo=scrutinizer" alt="Scrutinizer"></a></p>
+        <article><h1>uint-buffer</h1>
+<p>Copyright (c) 2018-2019 Rafael da Silva Rocha.<br>
+https://github.com/rochars/uint-buffer</p>
+<p><a href="https://www.npmjs.com/package/uint-buffer"><img src="https://img.shields.io/npm/v/uint-buffer.svg?style=for-the-badge" alt="NPM version"></a> <a href="https://rochars.github.io/uint-buffer/docs/index.html"><img src="https://img.shields.io/badge/docs-online-blue.svg?style=for-the-badge" alt="Docs"></a> <a href="https://rochars.github.io/uint-buffer/test/dist/browser.html"><img src="https://img.shields.io/badge/tests-online-blue.svg?style=for-the-badge" alt="Tests"></a><br>
+<a href="https://codecov.io/gh/rochars/uint-buffer"><img src="https://img.shields.io/codecov/c/github/rochars/uint-buffer.svg?style=flat-square" alt="Codecov"></a> <a href="https://travis-ci.org/rochars/uint-buffer"><img src="https://img.shields.io/travis/rochars/uint-buffer.svg?style=flat-square" alt="Unix Build"></a> <a href="https://ci.appveyor.com/project/rochars/uint-buffer"><img src="https://img.shields.io/appveyor/ci/rochars/uint-buffer.svg?style=flat-square&amp;logo=appveyor" alt="Windows Build"></a> <a href="https://scrutinizer-ci.com/g/rochars/uint-buffer/"><img src="https://img.shields.io/scrutinizer/g/rochars/uint-buffer.svg?style=flat-square&amp;logo=scrutinizer" alt="Scrutinizer"></a></p>
 <p><strong>uint-buffer</strong> is a module to encode and decode unsigned integers to and from byte buffers.</p>
 <ul>
 <li><strong>MIT licensed</strong></li>
-<li><strong>Use it out of the box in the browser</strong></li>
-<li><strong>Use it out of the box in Node.js</strong></li>
-<li><strong>Compatible with IE8+</strong></li>
-<li><strong>Include TypeScript declaration file</strong></li>
-<li><strong>Tested against Python's struct module</strong></li>
-<li><strong>Less than 1kb minified</strong></li>
+<li><strong>Fast</strong></li>
+<li><strong>Can be used where typed arrays can't</strong></li>
 </ul>
-<h2>Install</h2><pre class="prettyprint source"><code>npm install uint-buffer</code></pre><h2>Use</h2><h3>Node</h3><p>If you installed via <a href="https://www.npmjs.com/">NPM</a> or <a href="https://yarnpkg.com">Yarn</a>, <strong>import UintBuffer from uint-buffer</strong>:</p>
-<pre class="prettyprint source lang-javascript"><code>import UintBuffer from 'uint-buffer';
+<h2>Install</h2>
+<pre class="prettyprint source"><code>npm install uint-buffer
+</code></pre>
+<h2>Use</h2>
+<h3>Browser</h3>
+<p>Use the <strong>uint-buffer.js</strong> file in the <strong>dist</strong> folder:</p>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;uint-buffer.js&quot;>&lt;/script>
+&lt;script>
+  // A byte buffer, array and Uint8Array can be used
+  var buffer = [];
+
+  // Create a UintBuffer to handle 16-bit numbers
+  var uintBufer = new UintBuffer.UintBuffer(16);
+
+  // Pack a value
+  uintBufer.pack(buffer, 767);
+
+  // Check the buffer
+  console.log(buffer);
+&lt;/script>
+</code></pre>
+<p>Or load it from the <a href="https://cdn.jsdelivr.net/npm/uint-buffer">jsDelivr</a> CDN:</p>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/uint-buffer&quot;>&lt;/script>
+</code></pre>
+<p>Or load it from <a href="https://unpkg.com/uint-buffer">unpkg</a>:</p>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://unpkg.com/uint-buffer&quot;>&lt;/script>
+</code></pre>
+<h3>Node.js</h3>
+<pre class="prettyprint source lang-javascript"><code>const UintBuffer = require('uint-buffer').UintBuffer;
 
 // A byte buffer, array and Uint8Array can be used
 let buffer = [];
@@ -71,28 +108,14 @@ let uintBufer = new UintBuffer(32);
 uintBufer.pack(buffer, 2045);
 
 // Check the buffer
-console.log(buffer);</code></pre><p>Or <strong>require</strong>:</p>
-<pre class="prettyprint source lang-javascript"><code>const UintBuffer = require('uint-buffer');</code></pre><h3>Browser</h3><p>Use <strong>uint-buffer.umd.js</strong>:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;uint-buffer.umd.js&quot;>&lt;/script>
-&lt;script>
-    // A byte buffer, array and Uint8Array can be used
-    var buffer = [];
-
-    // Create a UintBuffer to handle 16-bit numbers
-    var uintBufer = new UintBuffer(16);
-
-    // Pack a value
-    uintBufer.pack(buffer, 767);
-
-    // Check the buffer
-    console.log(buffer);
-&lt;/script></code></pre><p>Or load it from the <a href="https://cdn.jsdelivr.net/npm/uint-buffer">jsDelivr</a> CDN:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/uint-buffer&quot;>&lt;/script></code></pre><p>Or load it from <a href="https://unpkg.com/uint-buffer">unpkg</a>:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://unpkg.com/uint-buffer&quot;>&lt;/script></code></pre><h2>API</h2><pre class="prettyprint source lang-javascript"><code>/**
+console.log(buffer);
+</code></pre>
+<h2>API</h2>
+<pre class="prettyprint source lang-javascript"><code>/**
  * A class to write and read unsigned ints to and from byte buffers.
  */
-class UintBuffer {
-
+export class UintBuffer {
+  
   /**
    * @param {number} bits The number of bits used by the integer.
    */
@@ -119,7 +142,7 @@ class UintBuffer {
    * @throws {Error} On overflow.
    */
   pack(buffer, num, index=0) {}
-
+  
   /**
    * Unpack one unsigned integer from a byte buffer.
    * @param {!Uint8Array|!Array&lt;number>} buffer An array of bytes.
@@ -128,11 +151,18 @@ class UintBuffer {
    * @throws {Error} On overflow.
    */
   unpack(buffer, index=0) {}
-}</code></pre><h2>Contributing</h2><p><strong>uint-buffer</strong> welcomes all contributions from anyone willing to work in good faith with other contributors and the community. No contribution is too small and all contributions are valued.</p>
+}
+</code></pre>
+<h2>Contributing</h2>
+<p><strong>uint-buffer</strong> welcomes all contributions from anyone willing to work in good faith with other contributors and the community. No contribution is too small and all contributions are valued.</p>
 <p>See <a href="https://github.com/rochars/uint-buffer/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> for details.</p>
-<h3>Style guide</h3><p><strong>uint-buffer</strong> code should follow the Google JavaScript Style Guide:<br>https://google.github.io/styleguide/jsguide.html</p>
-<h3>Code of conduct</h3><p>This project is bound by a code of conduct: The <a href="https://github.com/rochars/uint-buffer/blob/master/CODE_OF_CONDUCT.md">Contributor Covenant, version 1.4</a>, also available at https://<a href="http://www.contributor-covenant.org/version/1/4/code-of-conduct.html">www.contributor-covenant.org/version/1/4/code-of-conduct.html</a></p>
-<h2>LICENSE</h2><p>Copyright (c) 2018 Rafael da Silva Rocha.  </p>
+<h3>Style guide</h3>
+<p><strong>uint-buffer</strong> code should follow the Google JavaScript Style Guide:<br>
+https://google.github.io/styleguide/jsguide.html</p>
+<h3>Code of conduct</h3>
+<p>This project is bound by a code of conduct: The <a href="https://github.com/rochars/uint-buffer/blob/master/CODE_OF_CONDUCT.md">Contributor Covenant, version 1.4</a>, also available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html</p>
+<h2>LICENSE</h2>
+<p>Copyright (c) 2018-2019 Rafael da Silva Rocha.</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 &quot;Software&quot;), to deal in the Software without restriction, including
@@ -164,23 +194,24 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></article>
 <header>
     
         <h2>
-        uint-buffer.js
+        index.js
         </h2>
         
     
 </header>
 
 <article>
-    <div class="container-overview">
     
+        <div class="container-overview">
         
+            
 
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="uint-buffer.js.html">uint-buffer.js</a>, <a href="uint-buffer.js.html#line25">line 25</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -225,18 +256,21 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></article>
 
 
 
-        
-            <div class="description">Pack and unpack unsigned ints.</div>
-        
+            
+                <div class="description">Encode and decode unsigned integers to and from byte buffers.</div>
+            
 
+            
         
-    
-    </div>
-
-    
-
+        </div>
     
 
+    
+
+    
+
+    
+    
     
 
      
@@ -257,15 +291,21 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></article>
 
 
 
+    
+    
 </div>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Jul 30 2018 03:01:42 GMT-0300 (Hora oficial do Brasil) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
 <script src="scripts/linenumber.js"></script>
+
+
+
 </body>
 </html>
